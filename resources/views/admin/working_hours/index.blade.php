@@ -24,6 +24,14 @@
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
                 defaultView: 'agendaWeek',
+                header:
+                    {
+                        left: 'prev,next,today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                editable: true,
+                selectable: true,
                 events : [
                     @foreach($working_hours as $hour)
                     {

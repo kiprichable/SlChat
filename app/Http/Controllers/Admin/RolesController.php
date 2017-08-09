@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreRolesRequest;
 use App\Http\Requests\Admin\UpdateRolesRequest;
+use Illuminate\Support\Facades\View;
 
 class RolesController extends Controller
 {
+	public function __construct()
+	{
+		$user = \Auth::user();
+		
+		View::share('user_level', $user);
+	}
     /**
      * Display a listing of Role.
      *

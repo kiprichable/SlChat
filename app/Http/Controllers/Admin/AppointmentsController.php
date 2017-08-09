@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Appointment;
+use App\Employee;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAppointmentsRequest;
 use App\Http\Requests\Admin\UpdateAppointmentsRequest;
+use Illuminate\Support\Facades\View;
 
 class AppointmentsController extends Controller
 {
+	public function __construct()
+	{
+		$this->appointments = new Appointment();
+	}
     /**
      * Display a listing of Appointment.
      *
@@ -18,13 +26,23 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('appointment_access')) {
-            return abort(401);
-        }
-
-        $appointments = Appointment::all();
-
-        return view('admin.appointments.index', compact('appointments'));
+//        if (! Gate::allows('appointment_access')) {
+//            return abort(401);
+//        }
+	
+		$user = \Auth::User();
+		
+		
+			$appointments =  Appointment::all();
+			
+			$relations = [
+				
+				'clients' =>\App\Client::get()->pluck('last_name', 'id')->prepend('Please select', ''),
+				'employees' => \App\Employee::get()->pluck('first_name', 'id')->prepend('Please select', ''),
+			];
+		
+		
+        return view('admin.appointments.index', $relations,compact('appointments','user'));
     }
 
     /**
@@ -34,13 +52,36 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('appointment_create')) {
-            return abort(401);
-        }
-        $relations = [
-            'clients' => \App\Client::get()->pluck('first_name', 'id')->prepend('Please select', ''),
-            'employees' => \App\Employee::get()->pluck('first_name', 'id')->prepend('Please select', ''),
-        ];
+//        if (! Gate::allows('appointment_create')) {
+//            return abort(401);
+//        }
+        
+        if(\Auth::user()['role_id'] == '1')
+		{
+			$relations = [
+				
+				'clients' => \App\Client::all()
+					->pluck('last_name', 'id')
+					->prepend('Please select', ''),
+				'employees' => \App\Employee::get()
+					->pluck('first_name', 'id')
+					->prepend('Please select', ''),
+			];
+		}
+		else
+		{
+			$relations = [
+				
+				'clients' => \App\Client::where('email',Auth::user()['email'])
+					->pluck('last_name', 'id')
+					->prepend('Please select', ''),
+				'employees' => \App\Employee::get()
+					->pluck('first_name', 'id')
+					->prepend('Please select', ''),
+			];
+		}
+		
+        
 
         return view('admin.appointments.create', $relations);
     }
@@ -53,12 +94,18 @@ class AppointmentsController extends Controller
      */
     public function store(StoreAppointmentsRequest $request)
     {
-        if (! Gate::allows('appointment_create')) {
-            return abort(401);
-        }
-        $appointment = Appointment::create($request->all());
-
-
+//        if (! Gate::allows('appointment_create')) {
+//            return abort(401);
+//        }
+	
+        $appointment = new Appointment();
+        $appointment->start_time = $request->input('date'). ' ' .$request->input('start_time');
+        $appointment->finish_time = $request->input('date'). ' '.$request->input('finish_time');
+        $appointment->comments = $request->input('comments');
+        $appointment->client_id = $request->input('client_id');
+        $appointment->employee_id = $request->input('employee_id');
+        $appointment->created_at = Carbon::now();
+		$appointment->save();
 
         return redirect()->route('admin.appointments.index');
     }
@@ -72,9 +119,9 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('appointment_edit')) {
-            return abort(401);
-        }
+//        if (! Gate::allows('appointment_edit')) {
+//            return abort(401);
+//        }
         $relations = [
             'clients' => \App\Client::get()->pluck('first_name', 'id')->prepend('Please select', ''),
             'employees' => \App\Employee::get()->pluck('first_name', 'id')->prepend('Please select', ''),
@@ -94,9 +141,9 @@ class AppointmentsController extends Controller
      */
     public function update(UpdateAppointmentsRequest $request, $id)
     {
-        if (! Gate::allows('appointment_edit')) {
-            return abort(401);
-        }
+//        if (! Gate::allows('appointment_edit')) {
+//            return abort(401);
+//        }
         $appointment = Appointment::findOrFail($id);
         $appointment->update($request->all());
 
@@ -114,9 +161,9 @@ class AppointmentsController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('appointment_view')) {
-            return abort(401);
-        }
+//        if (! Gate::allows('appointment_view')) {
+//            return abort(401);
+//        }
         $relations = [
             'clients' => \App\Client::get()->pluck('first_name', 'id')->prepend('Please select', ''),
             'employees' => \App\Employee::get()->pluck('first_name', 'id')->prepend('Please select', ''),
@@ -136,9 +183,9 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('appointment_delete')) {
-            return abort(401);
-        }
+//        if (! Gate::allows('appointment_delete')) {
+//            return abort(401);
+//        }
         $appointment = Appointment::findOrFail($id);
         $appointment->delete();
 
@@ -152,9 +199,9 @@ class AppointmentsController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('appointment_delete')) {
-            return abort(401);
-        }
+//        if (! Gate::allows('appointment_delete')) {
+//            return abort(401);
+//        }
         if ($request->input('ids')) {
             $entries = Appointment::whereIn('id', $request->input('ids'))->get();
 

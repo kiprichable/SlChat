@@ -1,0 +1,88 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+*/
+$light:                           #fff !default;
+//$stable:                          #f8f8f8 !default;
+$positive:                        #FAFAFA !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #212121 !default;
+
+$stable:                          #2196F3;
+
+
+
+/* Empty. Add your own CSS if you like */
+
+.popup-buttons .button
+{
+  background-color: palegoldenrod;
+}
+
+.card
+{
+  font-family: "Avenir", Roman, Regular;
+
+}
+
+
+.home
+{
+  background-color: #42A5F5;
+  font-family: "Avenir", Roman, Regular;
+}
+.item{
+  background-color: #BBDEFB;
+
+}
+
+.text-center-icons-blue {
+  text-align: center;
+  border: solid;
+  border-width: thin;
+  border-color: #3d3d3d;
+  background: linear-gradient(to top, #1194b8, #11b7e1);
+  background: #11b7e1;
+  margin: 1%;
+  padding: 50%;
+}
+
+.text-center-icons-green {
+  text-align: center;
+  border: solid;
+  border-width: thin;
+  border-color: #3d3d3d;
+  background: linear-gradient(to top, #7f9d2a, #b3d335);
+  background: #b3d335;
+  margin: 1%;
+  padding: 50%;
+}
+
+.text-center-icons-aqua {
+  text-align: center;
+  border: solid;
+  border-width: thin;
+  border-color: #3d3d3d;
+  background: linear-gradient(to top, #2b8971, #3bbb9c);
+  background: #3bbb9c;
+  margin: 1%;
+  padding: 50%;
+}
+.icon-style {
+  font-size: 25vw;
+  color: #3d3d3d;
+}
+
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+

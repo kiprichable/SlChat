@@ -1,0 +1,51 @@
+<ion-view view-title="Pre Screen">
+
+  <ion-content>
+
+    <div class="list">
+
+
+      <!--<div class="item item-divider">-->
+        <!--Clientside, Selected Value: {{ data.clientSide }}-->
+      <!--</div>-->
+        <!--<div class="item item-text-wrap" ng-repeat="object in clientSideList track by $index">-->
+
+          <!--<p><strong>{{object.text}}</strong></p>-->
+          <!--<ion-radio ng-repeat="values in object.value"-->
+                     <!--ng-value="values"-->
+                     <!--ng-model="data.clientSide">-->
+            <!--{{ values}}-->
+          <!--</ion-radio>-->
+        <!--</div>-->
+
+
+
+    </div>
+
+
+    <div class="item item-text-wrap" ng-repeat="object in questions track by $index"  ng-show="$index == indexToShow">
+
+      <p><strong>{{object.question}}</strong></p>
+    </div>
+      <ion-radio ng-repeat="item in serverSideList"
+                 ng-value="item.value"
+                 ng-model="ctrlData.Selected"
+                 name="server-side">
+        {{ item.text }}
+      </ion-radio>
+    <div class="item item-text-wrap" ng-repeat="object in questions track by $index"  ng-show="$index == indexToShow">
+
+      <button ng-click="change($index)" class="button button-full button-calm">Next</button>
+    </div>
+
+
+
+
+    <div>
+
+    </div>
+  </ion-content>
+
+
+
+</ion-view>

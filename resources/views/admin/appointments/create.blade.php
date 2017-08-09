@@ -22,6 +22,8 @@
                     @endif
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('employee_id', 'Employee*', ['class' => 'control-label']) !!}
@@ -34,6 +36,7 @@
                     @endif
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('start_time', 'Start time*', ['class' => 'control-label']) !!}

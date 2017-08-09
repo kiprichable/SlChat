@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,12 +27,18 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         $user = \Auth::user();
-
-        
-        // Auth gates for: User management
-        Gate::define('user_management_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
+	
+		View::share('user_level', $user);
+	
+		Gate::define('user_is_loggedIn', function ($user) {
+			return $user->last_name;
+		});
+	
+	
+		// Auth gates for: User management
+     		Gate::define('user_management_access', function ($user) {
+			return in_array($user->role_id, [1]);
+		});
 
         // Auth gates for: Roles
         Gate::define('role_access', function ($user) {
@@ -69,53 +76,53 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Clients
         Gate::define('client_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('client_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('client_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('client_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('client_delete', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
 
         // Auth gates for: Employees
         Gate::define('employee_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('employee_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('employee_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('employee_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('employee_delete', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
 
         // Auth gates for: Working hours
         Gate::define('working_hour_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('working_hour_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('working_hour_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('working_hour_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('working_hour_delete', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+            return in_array($user->role_id, [1]);
         });
 
         // Auth gates for: Appointments

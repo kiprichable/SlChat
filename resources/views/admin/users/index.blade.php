@@ -4,7 +4,7 @@
     <h3 class="page-title">@lang('quickadmin.users.title')</h3>
     @can('user_create')
     <p>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ URL::asset('admin/users/create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
         
     </p>
     @endcan
@@ -37,22 +37,25 @@
                                     <td></td>
                                 @endcan
 
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->first_name . ' '. $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role->title or '' }}</td>
                                 <td>
                                     @can('user_view')
-                                    <a href="{{ route('admin.users.show',[$user->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    <a href="{{ URL::Asset('admin/users/'.$user->id) }}" class="btn btn-xs
+                                    btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
                                     @can('user_edit')
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    <a href="{{ URL::Asset('admin/users/'.$user->id.
+                                    '/edit') }}" class="btn btn-xs
+                                    btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('user_delete')
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.users.destroy', $user->id])) !!}
+                                        'url' => 'admin/users/'.$user->id)) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
@@ -73,7 +76,7 @@
 @section('javascript') 
     <script>
         @can('user_delete')
-            window.route_mass_crud_entries_destroy = '{{ route('admin.users.mass_destroy') }}';
+            window.URL::Asset_mass_crud_entries_destroy = '{{ URL::Asset('admin.users.mass_destroy') }}';
         @endcan
 
     </script>

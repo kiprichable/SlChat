@@ -13,7 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+		Commands\LoadNonBookableDays::class,
+		Commands\GCalendarEvents::class,
+		Commands\clientsConvert::class,
+		Commands\appointmentsConvert::class
     ];
 
     /**

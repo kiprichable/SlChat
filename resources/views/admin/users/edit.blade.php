@@ -13,12 +13,24 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('first_name', 'First name', ['class' => 'control-label']) !!}
+                    {!! Form::text('first_name', old('first_name'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('name'))
+                    @if($errors->has('first_name'))
                         <p class="help-block">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('first_name') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('last_name', 'Last name', ['class' => 'control-label']) !!}
+                    {!! Form::text('last_name', old('last_name'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('last_name'))
+                        <p class="help-block">
+                            {{ $errors->first('last_name') }}
                         </p>
                     @endif
                 </div>

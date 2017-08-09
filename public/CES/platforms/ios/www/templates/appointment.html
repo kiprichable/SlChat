@@ -1,0 +1,115 @@
+<ion-view view-title="Make an appointment">
+    <ion-content>
+        <div class="list card">
+            <div class="item item-body">
+                <img class="full-image" src="img/appointment.jpg">
+                <h2 align="center">Appointment Instructions</h2>
+                    <ul style="text-align: center">
+                        <li>Days: Tuesday and Thursdays</li>
+                        <li>Time: 9 am - 4 pm</li>
+                        <li>Duration: 1 hour.</li>
+                    </ul>
+
+                <p align="center">
+                    After submitting your appointment request you will get a confirmation number that you can use to
+                    check if your appointment has been accepted on the Check appointment tab on the homepage
+                </p>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">First Name</span>
+                    <textarea type="text" placeholder="Enter First Name" id="fname"></textarea>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="Enter Last Name" id="lname">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">City</span>
+                    <input type="text" placeholder="Enter City" id="city">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">State</span>
+                    <input type="text" placeholder="Enter state" id="state">
+                </label>
+                <label class="item item-text-wrap">
+                    <p class="label">Are there additional family members with you that are also in need of shelter?</p>
+                    <p class="item item-assertive">
+                        <ion-radio name="member" ng-model="ctrlData.members" ng-value="'Yes'">Yes</ion-radio>
+                        <ion-radio name="member" ng-model="ctrlData.members"  ng-value="'No'">No</ion-radio>
+                    </p>
+
+                </label>
+                <label class="item item-text-wrap">
+                    <p class="input">If yes above, list their name</p>
+                    <input type="text" placeholder="Enter Names" id="names">
+                </label>
+                <label class="item item-text-wrap">
+                    <p>Are you under 25 years of age?</p>
+                    <p class="item item-assertive">
+                        <ion-radio name="age" ng-model="ctrlData.age"ng-value="'Yes'">Yes</ion-radio>
+                        <ion-radio name="age" ng-model="ctrlData.age" ng-value="'No'">No</ion-radio>
+                    </p>
+
+                </label>
+
+            </div>
+            <label class="item item-text-wrap">
+                <p class="label">Are you a veteran?</p>
+                <p class="item item-assertive">
+                    <ion-radio name="veteran" ng-model="ctrlData.veteran" ng-value="'Yes'">Yes</ion-radio>
+                    <ion-radio name="veteran" ng-model="ctrlData.veteran" ng-value="'No'">No</ion-radio>
+                </p>
+
+            </label>
+            <label class="item item-text-wrap">
+                <p class="input">If yes, do you have DD214? </p>
+                <input type="text" placeholder="Enter DD214" id="dd214">
+            </label>
+            <label class="item item-text-wrap">
+                <p class="label">Where did you stay last night?”</p>
+                <p class="item item-assertive">
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Outside/Park/Campground'">
+                        Outside/Park/Campground</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Shed/Garage or building'">Shed/Garage or
+                        building</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Vehicle'">Vehicle</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Jail, Prison or Detention'">Jail, Prison
+                        or Detention</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Emergency or DV Shelter'">Emergency or DV
+                        Shelter</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Motel paid by agency'">Motel paid by
+                        agency</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Hospital or Treatment Facility'">Hospital
+                        or Treatment Facility</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Own apartment/house/trailer'">Own
+                        apartment/house/trailer</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'With a family member or friend'">With a
+                        family member or friend</ion-radio>
+                    <ion-radio name="stay" ng-model="ctrlData.stay" ng-value="'Motel paid by self, family, friend'">Motel
+                        paid by self, family, friend</ion-radio>
+                </p>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Date :</span>
+
+                <input type="datetime-local"
+                       ng-model="ctrlData.appointmentDate"
+                       min="{{minDate}}" max=""
+                       id="date" required>
+            </label>
+            <label class="item item-text-wrap">
+                <div id="app_results" class="list list-item item-text-wrap" align="center">
+
+                </div>
+            </label>
+            <button id="db_btn" class="button button-block button-assertive">
+                Make Appointment
+            </button>
+        </div>
+        </div>
+
+    </ion-content>
+</ion-view>

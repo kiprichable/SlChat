@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,6 +77,7 @@ return [
      */
 
      'date_format' => 'Y-m-d',
+     'time_format' => 'H:i',
      'date_format_js' => 'yy-mm-dd',
 
     /*
