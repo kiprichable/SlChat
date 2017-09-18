@@ -136,6 +136,7 @@ angular.module('starter.controllers', [])
                 var lname = $('#lname').val();
                 var city = $('#city').val();
                 var state = $('#state').val();
+                var contact = $('#contact').val();
                 var names = $('#names').val();
                 var dd214 = $('#dd214').val();
                 var members = $scope.ctrlData.members;
@@ -154,6 +155,7 @@ angular.module('starter.controllers', [])
                         lname: lname,
                         city: city,
                         state: state,
+                        contact: contact,
                         names: names,
                         dd214: dd214,
                         members: members,

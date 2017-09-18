@@ -17,7 +17,6 @@
 		public function getAppointments()
 		{
 			$appointments = DB::table('app_appointments')->get();
-			
 			foreach($appointments as $appointment)
 			{
 				$newApp = Appointment::firstOrCreate(['start_time' => $appointment->date .' '. $appointment->start_time]);

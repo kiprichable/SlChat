@@ -7,6 +7,7 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">HOME</a>
+            <a class="navbar-brand page-scroll" href="https://txthomeless.com/CES/www/#/tab/home">PRE SCREEN</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,7 +21,7 @@
                     <a class="page-scroll" href="#headingHome">HEADING HOME</a>
                 </li>
 
-                <li><a href="https://txthomeless.com/CES/www/#/tab/prescreen">CE</a></li>
+
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">CES ADMIN</a></li>
                     {{--<li><a href="{{ url('/users/create') }}">REGISTER</a></li>--}}

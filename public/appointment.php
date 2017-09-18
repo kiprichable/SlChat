@@ -5,6 +5,7 @@
 	$lname = $query['lname'];
 	$city = $query['city'];
 	$state = $query['state'];
+	$contact= $query['contact'];
 	$members = $query['members'];
 	$age = $query['age'];
 	$dd214 = $query['dd214'];
@@ -38,9 +39,8 @@
 
 
 ##insert client query
-	$insertClientSQL = "INSERT INTO app_clients (first_name,last_name,city,state,additional_family,additional_names,age,veteran,
-                                                        dd214,last_night_residence)
-                                                        VALUES ('$fname','$lname','$city','$state','$members','$names','$age','$veteran','$dd214','$stay')";
+	$insertClientSQL = "INSERT INTO app_clients (first_name,last_name,city,state,contact,additional_family,additional_names,age,veteran, dd214,last_night_residence)
+                        VALUES ('$fname','$lname','$city','$state','$contact','$members','$names','$age','$veteran','$dd214','$stay')";
 
 ###get the confirmation number
 	$length = 6;
@@ -77,7 +77,7 @@
 					
 				}
 				##update client query
-				$updateSQL = "UPDATE app_clients SET first_name ='$fname',last_name='$lname',city ='$city', state ='$state',
+				$updateSQL = "UPDATE app_clients SET first_name ='$fname',last_name='$lname',city ='$city', state ='$state',contact ='$contact',
                                         additional_family ='$members',additional_names ='$names',veteran ='$veteran',age ='$age',dd214 ='$dd214',
                                         last_night_residence ='$stay' WHERE id='$userID'";
 				
@@ -209,6 +209,10 @@
 				if ($state == '')
 				{
 					echo 'State is required <br>';
+				}
+				if ($contact == '')
+				{
+					echo 'Contact is required <br>';
 				}
 			}
 		}
