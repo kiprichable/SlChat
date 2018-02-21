@@ -14,4 +14,4 @@
         </ul>
     </div>
 </footer>
-"></script>
+</script>
